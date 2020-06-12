@@ -7,17 +7,17 @@ using System.Text;
 
 namespace Infrastructure.Data.Config
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public class BrandConfiguration : IEntityTypeConfiguration<Brand>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<Brand> builder)
         {
-            builder.HasKey(c => c.Id);
+            builder.HasKey(b => b.Id);
 
-            builder.Property(c => c.Id)
+            builder.Property(b => b.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 
-            builder.Property(c => c.CategoryName)
+            builder.Property(b => b.BrandName)
                 .IsRequired()
                 .HasMaxLength(100);
         }
