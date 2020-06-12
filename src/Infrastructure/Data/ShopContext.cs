@@ -24,7 +24,7 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             // https://www.learnentityframeworkcore.com/configuration/fluent-api
-            // modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            // modelBuilder.ApplyConfiguration(new CategoryConfiguration());   // Tekil hali, her model icin ayrı ayrı uygulanır.
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());  // tara ve configuration dosyalarını bul
         }
     }
