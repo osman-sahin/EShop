@@ -32,3 +32,13 @@
         <partial name="_ProductPartial" model="product" />
     }
 </div>
+
+<div>
+    Number of Pages: @Model.PaginationInfo.TotalPages
+    <br />
+    Number of Current Page: @Model.PaginationInfo.ActualPage
+    <br />
+    Number of Products: @Model.PaginationInfo.TotalItems
+    <br />
+    Number of Products on Page: @Model.PaginationInfo.ItemsOnPage
+</div>

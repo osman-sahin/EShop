@@ -18,6 +18,12 @@ namespace Infrastructure.Data
         {
             _dbContext = dbContext;
         }
+
+        public async Task<int> CountAsync(ISpecification<T> specification)
+        {
+            return await(await ApplySpecification(specification)).CountAsync();
+        }
+
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
