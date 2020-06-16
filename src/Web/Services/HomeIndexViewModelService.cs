@@ -18,7 +18,7 @@ namespace Web.Services
         private readonly IAsyncRepository<Brand> _brandRepository;
         private readonly IAsyncRepository<Product> _productRepository;
 
-        public HomeIndexViewModelService(IAsyncRepository<Category> categoryRepository, IAsyncRepository<Brand> brandRepository, IAsyncRepository<Product> productRepository )
+        public HomeIndexViewModelService(IAsyncRepository<Category> categoryRepository, IAsyncRepository<Brand> brandRepository, IAsyncRepository<Product> productRepository)
         {
             _categoryRepository = categoryRepository;
             _brandRepository = brandRepository;
@@ -61,7 +61,15 @@ namespace Web.Services
             {
                 Categories = await GetCategories(),
                 Brands = await GetBrands(),
-                Products = await _productRepository.ListAsync(new ProductsFilterSpecification(categoryId, brandId)),
+                Products = (await _productRepository.ListAsync(new ProductsFilterSpecification(categoryId, brandId)))
+                    .Select(x => new ProductViewModel
+                    {
+                        Id = x.Id,
+                        ProductName = x.ProductName,
+                        Description = x.Description,
+                        UnitPrice = x.UnitPrice,
+                        PhotoPath = string.IsNullOrEmpty(x.PhotoPath) ? "no-product-image.png" : x.PhotoPath
+                    }).ToList(),
                 CategoryId = categoryId,
                 BrandId = brandId
             };

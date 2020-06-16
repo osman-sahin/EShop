@@ -1,0 +1,16 @@
+﻿@model ProductViewModel
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="#">
+            <img src="~/images/products/@Model.PhotoPath" alt="@Model.ProductName" class="card-img-top" />
+        </a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="#">@Model.ProductName</a>
+            </h4>
+            <h5>₺@Model.UnitPrice.ToString("N2")</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+    </div>
+</div>
