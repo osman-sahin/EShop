@@ -4,8 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to E-Shop</h1>
 </div>
 
 <form>
@@ -25,20 +24,22 @@
     </div>
 </form>
 
-<div class="row">
+@if (Model.Products.Count > 0)
+{
+    <div class="row">
 
-    @foreach (var product in Model.Products)
-    {
-        <partial name="_ProductPartial" model="product" />
-    }
-</div>
+        @foreach (var product in Model.Products)
+        {
+            <partial name="_ProductPartial" model="product" />
+        }
+    </div>
+    <partial name="_PaginationPartial" model="Model.PaginationInfo" />
+}
+else
+{
+    <div class="text-center my-5">
+        No products found based on your search...
+    </div>
+}
 
-<div>
-    Number of Pages: @Model.PaginationInfo.TotalPages
-    <br />
-    Number of Current Page: @Model.PaginationInfo.ActualPage
-    <br />
-    Number of Products: @Model.PaginationInfo.TotalItems
-    <br />
-    Number of Products on Page: @Model.PaginationInfo.ItemsOnPage
-</div>
+
